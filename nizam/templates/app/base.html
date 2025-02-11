@@ -1,0 +1,102 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'app/css/all.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'app/css/style.css' %}" />
+  <title> Nizam Education Welfare (NEW) | {% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+<header>  
+  <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-between border-bottom fixed-top">
+    <div class="container-fluid navbar-dark bg-success py-6 fs-5">
+      <a href="" class="navbar-brand" style="text-decoration: none;">
+        <img src="{% static 'app/image/nizam1.jpg'%}" alt="" width="50px" height="70px">
+      </a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 fs-5 text-center">
+          <li class="nav-item px-2">
+            <a class="nav-link {% block homeactive %}{% endblock homeactive %}" aria-current="page" style="text-decoration: none;" href="/">Home</a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link {% block postsactive %}{% endblock postsactive %}" href="{% url 'posts' %}" style="text-decoration: none;">Posts</a>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link {% block contactactive %}{% endblock contactactive %}" href="{% url 'contact' %}" style="text-decoration: none;">Contact Us</a>
+          </li>
+        </ul>
+        <div class="d-flex justify-content-center align-items-center flex-grow-1">
+          <span class="navbar-text mx-auto d-none d-lg-block" style="font-size: 24px; white-space: nowrap;">
+            <a href="" class="active" style="text-decoration: none;">Nizam Education Welfare (NEW)</a>
+          </span>
+        </div>
+        
+        <form method="get" class="d-flex fs-3 px-2" role="search" action="/search/">
+          <input class="form-control me-2 " type="search" placeholder="Search" name="search" aria-label="Search">
+          <button class="btn btn-outline-dark fs-5" type="submit">Search</button>
+        </form>
+        <ul class="navbar-nav fs-5 text-center">
+          <li class="nav-item dropdown px-2">
+            <a class="nav-link dropdown-toggle {% block notesactive %}{% endblock notesactive %}" href="#"
+              id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+              Notes</a>
+            <ul class="dropdown-menu px-21" aria-labelledby="notesDropdown">
+              <li><a class="dropdown-item" href="{% url 'getnotes' %}">Get Notes</a></li>
+              <li><a class="dropdown-item" href="{% url 'notes' %}">Upload Notes</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown px-2">
+            <a class="nav-link dropdown-toggle {% block membersactive %}{% endblock membersactive %}" href="#"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+              Members
+            </a>
+            <ul class="dropdown-menu px-2" aria-labelledby="membersDropdown">
+              <li><a class="dropdown-item" href="{% url 'membership' %}">Membership</a></li>
+              <li><a class="dropdown-item" href="{% url 'membersdetail' %}">Members Detail </a></li>
+            </ul>
+          </li>
+          <li class="nav-item px-2">
+            <a class="nav-link {% block surveyactive %}{% endblock surveyactive %}" href="#" style="text-decoration: none;">Survey</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+  {% block banner_slider %}{% endblock banner_slider %}
+  {% block css %}{% endblock css %}
+  {% block body %}{% endblock body %}
+  {% block script %}{% endblock script %}
+  <footer class="container-fluid fixed-bottom bg-success text-center p-2 mt-0">
+    Copyright : 2022 || Nizam Eduction Welfare (NEW)
+  </footer><br>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="{% static 'app/js/owl.carousel.min.js'%}"></script>
+  <script src="{% static 'app/js/all.min.js'%}"></script>
+  <script src="{% static 'app/js/myscript.min.js'%}"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>

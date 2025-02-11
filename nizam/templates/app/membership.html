@@ -1,0 +1,71 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Membership{% endblock title %}
+{% block membersactive %} active {% endblock membersactive %}
+{% block css %}
+<style>
+    .container{
+        min-height: 100vh;
+        margin-top: 5%;
+    }
+</style>
+{% endblock css %}
+{% block body %}
+<div class ='container'>
+    <form action ="/membership/" method = "POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class ="lg-bold text-center">  
+      <h2><span class="text-primary">Please Fill The From To Become Member </span></h2>
+      <hr / class="w-50 m-auto">
+    </div>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" aria-describedby="emailHelp" require>
+      </div>
+      <div class="mb-3">
+        <label for="father name" class="form-label">Father Name</label>
+        <input type="father" class="form-control" id="father" name="father" placeholder="Enter Your Father Name " aria-describedby="emailHelp" require>
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Date of Birth  </label>
+        <input type='integer' class="form-control"id="date" name="date" placeholder="Eg: 02-02-2004 " aria-describedby="emailHelp" require> 
+      </div>
+      <div class="mb-3">
+        <label for="dep" class="form-label">Department</label>
+        <input type="dep" class="form-control" id="dep" name="dep" placeholder="Enter Your Department  Name " aria-describedby="emailHelp" require>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Studing Year</label>
+        <select class="form-select form-select-lg mb-3" id="year" name="year" aria-label="Large select example">
+          <option selected>First Year</option>
+          <option value="2">Second Year</option>
+          <option value="3">Third Year</option>
+          <option value="3">Final Year</option>          
+          <option value="3">Master First Year</option>          
+          <option value="3">Master Second Year</option>          
+        </select>
+      </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email " aria-describedby="emailHelp" require>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone No:</label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number " aria-describedby="emailHelp" require>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label"> Member's Image</label>
+          <input type="file" class="text-file" id="file" name="file" aria-describedby="emailHelp" require>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong>Message:</strong> {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      {% endfor %}
+</div>
+{% endblock body %}

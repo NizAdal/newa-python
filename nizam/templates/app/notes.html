@@ -1,0 +1,71 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %} Notes {% endblock title %}
+{% block notesactive %} active {% endblock notesactive %}
+{% block body %}
+<style>
+  .container{
+      min-height: 100vh;
+      margin-top: 120px;
+  }
+</style>
+<div class ='container'>
+  <div class ='container'>
+    <form action ="/membership/" method = "POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class ="lg-bold text-center">  
+      <h2><span class="text-primary">Please Fill Form and Upload Notes </span></h2>
+      <hr / class="w-50 m-auto">
+    </div>
+  <form action ="/notes/" method = "POST"  enctype="multipart/form-data">
+    {% csrf_token %}  
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" aria-describedby="emailHelp" require>
+      </div>
+      <div class="mb-3">
+        <label for="department name" class="form-label">Department </label>
+        <input type="dep" class="form-control" id="dep" name="dep" placeholder="For Which Department Notes are   " aria-describedby="emailHelp" require>
+      </div>
+      <div class="mb-3">
+        <label for="year" class="form-label">Year</label>
+        <input type='year' class="form-control"id="year" name="year" placeholder="For Which Year Notes are(Eg:Second , Third)" aria-describedby="emailHelp" require> 
+      </div>
+      <div class="mb-3">
+        <label for="semi" class="form-label">Semester</label>
+        <input type="demi" class="form-control" id="semi" name="semi" placeholder="For Which Semester Notes are(Eg:1,4 or 6)" aria-describedby="emailHelp" require>
+      </div>
+        <div class="mb-3">
+          <label for="Subject" class="form-label">Subject</label>
+          <input type="Subject" class="form-control" id="sub" name="sub" placeholder="Which Subject Notes are" aria-describedby="emailHelp" require>
+        </div>        <div class="mb-3">
+          <label for="teacher" class="form-label">Teacher</label>
+          <input type="teacher" class="form-control" id="te" name="te" placeholder="Name of Subject Teacher " aria-describedby="emailHelp" require>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone No:</label>
+          <input type="number"   class="form-control" id="phone" name="phone" placeholder="Please Enter Your Contact Number(Optional) " value = 0>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Upload Your File</label>
+          <input type="file"class="text-file" id="file" name="file" aria-describedby="emailHelp" require>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      {% for message in messages %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+      <strong>Message:</strong> {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      {% endfor %}
+</div>
+</div>
+
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+       <p class='alert alert-danger my-3'>{{error}}</p>
+{% endfor %}
+{% endif %}
+{% endblock body %}

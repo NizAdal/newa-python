@@ -1,0 +1,63 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Membership{% endblock title %}
+{% block membersactive %} active {% endblock membersactive %}
+{% block body %}
+<style>
+  .container{
+      min-height: 100vh;
+      margin-top: 5%;
+  }
+</style>
+<div class = container>
+{% if mem %}
+<div class ='container'>
+  <form action ="/membership/" method = "POST"  enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class ="lg-bold text-center">  
+    <h2><span class="text-primary">Here is the list of our members </span></h2>
+    <hr / class="w-50 m-auto">
+  </div><br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sno:</th>
+      <th scope="col">Image</th>
+      <th scope="col">Name</th>
+      <th scope="col">Father Name</th>
+      <th scope="col">Department</th>
+      <th scope="col">Year of Study</th>
+      <th scope="col">Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for a in mem %}
+    <tr>
+        <th scope="row">{{a.sno}}</th>
+        <td style="width: 150px;"> <img src="{{ a.file.url }}" class="img-thumbnail" alt="Members image" style="max-width: 100%; height: auto;"></td>
+        <td>{{a.name}}</td>
+        <td>{{a.father}}</td>
+        <td>{{a.dep}}</td>
+        <td>{{a.year}}</td>
+        <td>{{a.phone}}</td> 
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<div class = "my-0 width=400px">
+  {% if prev %}
+  <button class="btn btn-success"><a class="text-light" href="/membersdetail/?page={{prev}}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">&laquo; Previous</a></button>
+  {% else %}
+  <button class="btn btn-success"><a class="text-light" href="#" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">&laquo; Previous</a></button>
+  {% endif %}
+  {% if nxt %}
+  <button class="btn btn-success float-end"><a class="text-light" href="/membersdetail/?page={{nxt}}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Next &raquo;</a></button>
+  {% else %}
+  <button class="btn btn-success float-end"><a class="text-light" href="#" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Next &raquo;</a>
+  </button></button>
+  {% endif %}
+  <br/><br/>
+</div>    
+</div>    
+{% endblock body %}

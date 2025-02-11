@@ -1,0 +1,86 @@
+{% extends "app/base.html" %}
+{% load cache %}
+{% load static %}
+
+{% cache 259200  cou %}
+{% block title %}Home{% endblock title %}
+{% block  homeactive %} active {% endblock homeactive %}
+{% block banner_slider %}
+<style>
+.carousel-container img{
+   width: 100%;
+   height: 80vh;
+  }
+</style>
+<div class="carousel-container px-0 mx-0 mt-5">
+  <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner py-100 mx-10">    
+      <div class="carousel-item active">
+        <img src="{% static 'app/image/nizam1.jpg' %}" class="d-block w-100" alt="Nizam Logo">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/image/banner3.jpg' %}" class="d-block w-100" alt="Members Group Photo">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/image/banner.jpg' %}" class="d-block w-100" alt="Clips During Meeting">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'app/image/banner2.jpg' %}" class="d-block w-100" alt="Group Photo">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+{% endblock banner_slider %}
+{% block body %}
+<section class="about my-5 mx-0">
+  <div class="container">
+    <div class ="lg-bold text-center">
+      <h1 data-aos="fade-up" data-aos-offset="200"> About <span class="text-primary"> us </span></h1>
+      <hr class="w-25 m-auto" />
+    </div>  
+  </div>
+</section>
+{% for item in gee %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-12 order-md-1 px-2" data-aos="fade-right" data-aos-offset="200">
+      <img src="{{item.logo.url}}" class="img-fluid img-thumbnail" alt="image of post">
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-12 order-md-2 py-5" data-aos="zoom-in" data-aos-offset="200">
+      <h2 class="my-3">{{item.content | safe}}</h2>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% for hey in mub  %}
+<section class="about my-5 mx-0">
+  <div class="container">
+    <div class ="lg-bold text-center">
+      <h1  data-aos="fade-up" data-aos-offset="200"> Message From Our President <span class="text-primary"> {{hey.name}} </span></h1>
+      <hr class="w-80 m-auto" />
+    </div>  
+  </div>
+</section>
+<div class="container py-0 ">
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6 col-12 m-auto text-end" data-aos="fade-right" data-aos-offset="200">
+      <img src="{{hey.president.url}}" class="img-fluid img-thumbnail" alt="President image">
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 col-12  py-2"  data-aos="zoom-in" data-aos-offset="200">
+      <h2 class="my-3">{{hey.content| safe}}</h2>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% endblock body %}
+{% endcache cou %}

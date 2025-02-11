@@ -1,0 +1,130 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Survey{% endblock title %}
+{% block surveyactive %} active {% endblock surveyactive %}
+{% block body %}
+<style>
+    .container{
+        min-height: 100vh;
+        margin-top: 120px;
+    }
+</style>
+<div class = "container">
+    <h1>{{ surv.topic }}</h1>
+    <form action="/startsurvey/" method="POST">
+      {% csrf_token %}
+      {% for question in questions %}
+      <h2>{{ question.question1 }}</h2>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+        <label class="form-check-label" for="yes">Yes</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+        <label class="form-check-label" for="no">No</label>
+    </div>
+    <h2>{{ question.question2 }}</h2>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+      <label class="form-check-label" for="yes">Yes</label>
+  </div>
+  <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+      <label class="form-check-label" for="no">No</label>
+  </div>
+  <h2>{{ question.question3 }}</h2>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+    <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+    <label class="form-check-label" for="no">No</label>
+</div>
+<h2>{{ question.question4 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>
+<h2>{{ question.question5 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>
+<h2>{{ question.question6 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>
+<h2>{{ question.question7 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>
+<h2>{{ question.question8 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>
+<h2>{{ question.question9 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>
+<h2>{{ question.question10 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>
+<h2>{{ question.question11 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>  
+<h2>{{ question.question12 }}</h2>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="yes" id="yes" value="Yes">
+  <label class="form-check-label" for="yes">Yes</label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" name="no" id="no" value="No">
+  <label class="form-check-label" for="no">No</label>
+</div>
+</div>    
+      {% endfor %}
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>  
+</div><br>
+{% endblock body %}

@@ -1,0 +1,26 @@
+{% extends "app/base.html" %}
+{% load cache %}
+{% load static %}
+{% cache 7200  con %}
+{% block title %} Notes {% endblock title %}
+{% block notesactive %} active {% endblock notesactive %}
+{% block body %}
+<style>
+    .container{
+        min-height: 100vh;
+        margin-top: 8%;
+    }
+  </style>
+<div class='container'>
+    <div class="file-info">
+        <h1 class="my-3">Subject: {{ files.subject }} by: {{ f.teacher}}</h1>
+        <h3 class="my-3">Department:  {{ files.dep }}</h3>
+        <h5 class="my-3">Year: {{ files.year }}</h5>
+        <h5 class="my-3">Semester: {{ files.semester }}</h5>
+        <h5 class="my-3">Name Of Uploader: {{ files.name }}</h5>
+        <h5 class="my-3">Phone No of Uploader: {{ files.phone }}</h5>
+        <a href="{{ files.file.url }}" class="btn btn-primary">Download File</a>
+    </div>
+</div>
+{% endblock body %}
+{% endcache con %}

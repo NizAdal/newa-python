@@ -1,0 +1,38 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block title %}Survey{% endblock title %}
+{% block surveyactive %} active {% endblock surveyactive %}
+{% block body %}
+<style>
+  .container{
+      min-height: 100vh;
+      margin-top: 9%;
+  }
+</style>
+<div class = "container">
+    <form action="/survey/" method="POST">
+    {% csrf_token %}
+    <div class ="lg-bold text-center">  
+      <h2><span class="text-primary"> Thanks for becoming part of our{{ sur.topic }} <br> Please Click Below To Start Survey</span></h2>
+      <hr / class="w-50 m-auto">
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" aria-describedby="emailHelp" required>
+      </div>
+      <div class="mb-3">
+        <label for="dept" class="form-label">Department</label>
+        <input type="text" class="form-control" id="dept" name="dept" placeholder="Enter Your Department" aria-describedby="emailHelp" required>
+      </div>
+      <div class="mb-3">
+        <label for="rollno" class="form-label">Roll Number</label>
+        <input type="text" class="form-control" id="rollno" name="rollno" placeholder="Enter Your Roll no:" aria-describedby="emailHelp" required>
+      </div>
+        <div class="mb-3">
+          <label for="year" class="form-label">Year</label>
+          <input type="tel" class="form-control" id="year" name="year" placeholder="Enter Your Year " aria-describedby="emailHelp" required>
+        </div>
+        <a href="{% url 'startsurvey' %}" class="btn btn-primary">Click to Start</a>
+    </form>
+  </div><br>
+  {% endblock body %}

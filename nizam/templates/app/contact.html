@@ -1,0 +1,46 @@
+{% extends "app/base.html" %}
+{% load static %}
+<!-- {% load cache %} -->
+<!-- {% cache 259200  co %} -->
+{% block title %}Contact{% endblock title %}
+{% block contactactive %} active {% endblock contactactive %}
+{% block css %}
+<style>
+    .container{
+        min-height: 100vh;
+        margin-top: 5%;
+    }
+</style>
+{% endblock css %}
+{% block body %}
+<div class ='container'>
+  <div class ='container'>
+    <form action ="/membership/" method = "POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class ="lg-bold text-center">  
+      <h2><span class="text-primary"> Contact us </span></h2>
+      <hr / class="w-50 m-auto">
+    </div>
+  <form action ="/contact/" method = "POST">
+    {% csrf_token %}  
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" aria-describedby="emailHelp" require>
+      </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email " aria-describedby="emailHelp" require>
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">Give me your views  </label>
+          <textarea class = "form-control" id="desc" name = "desc" require> </textarea> 
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone No:</label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number " aria-describedby="emailHelp" require>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+{% endblock body %}
+<!-- {% endcache co %} -->

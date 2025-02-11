@@ -1,0 +1,96 @@
+{% extends "app/base.html" %}
+{% block title %}Search Result{% endblock title %}
+{% block homeactive %} active {% endblock homeactive %}
+{% block body %}
+<style>
+    .container{
+        min-height: 100vh;
+        margin-top: 120px;
+    }
+  </style>
+<div class="container ">
+    <form action ="/search/" method = "GET">
+    {% csrf_token %}     
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                {% for b in allPosts %}
+                <div class="container">
+                    <h1 class="my-3">{{b.title}}</h1>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <img src="{{b.post_image.url}}" class="img-fluid rounded-start" alt="image of post">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="my-3">
+                    {{b.content | safe}} <!--the filter 'safe' will render hmtl tags from data base-->
+                </div><br>
+            </div>
+            {% endfor %}
+            <div class='container my-4'>
+                {% for q in aa %}
+                <div class="file-info">
+                    <h1 class="my-3">Subject: {{ q.subject }} by: {{ q.teacher}}</h1>
+                    <h3 class="my-3">Department: {{ q.dep }}</h3>
+                    <h5 class="my-3">Year: {{ q.year }}</h5>
+                    <h5 class="my-3">Semester: {{ q.semester }}</h5>
+                    <h5 class="my-3">Name Of Uploader: {{ q.name }}</h5>
+                    <h5 class="my-3">Phone No of Uploader: {{ q.phone }}</h5>
+                    <a href="{{ q.file.url }}" class="btn btn-primary">Download File</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <h1>Here is the list of our members</h1><br>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Sno:</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Father Name</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Year of Study</th>
+                            <th scope="col">Phone</th>
+                        </tr>
+                    </thead>
+                </div>
+        </div>
+    </div>
+    <div class="container my-3">                
+        {% for a in al %}
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{a.sno}}</th>
+                            <td style="width: 150px;"> <img src="{{ a.file.url }}" class="img-thumbnail"
+                                alt="Members image" style="max-width: 100%; height: auto;"></td>
+                            <td>{{a.name}}</td>
+                            <td>{{a.father}}</td>
+                            <td>{{a.dep}}</td>
+                            <td>{{a.year}}</td>
+                            <td>{{a.phone}}</td>
+                        </tr>
+                    </tbody>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </table>
+</form>    
+{% for message in messages %}
+<li class="{{ message.tags }}">
+    {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+</li>
+{% endfor %}
+</div>
+{% endblock body %}

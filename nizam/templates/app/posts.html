@@ -1,0 +1,64 @@
+{% extends "app/base.html"%}
+{% load static %}
+{% block title %}Posts{% endblock title %}
+{% block postsactive %} active {% endblock postsactive %}
+{% block banner_slider %}
+<style>
+  .carousel-container img{
+     width: 100%;
+     height: 80vh;
+    }
+  </style>
+  <div class="carousel-container px-0 mx-0 mt-5">
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner py-100 mx-10">    
+        <div class="carousel-item active">
+          <img src="{% static 'app/image/nizam1.jpg' %}" class="d-block w-100" alt="Nizam Logo">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'app/image/banner3.jpg' %}" class="d-block w-100" alt="Members Group Photo">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'app/image/banner.jpg' %}" class="d-block w-100" alt="Clips During Meeting">
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'app/image/banner2.jpg' %}" class="d-block w-100" alt="Group Photo">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+{% endblock banner_slider %}
+{% block body %}
+{% for blog in blogs %}
+<div class = "my-10 px-3">
+  <h2 class="text-dark"> <a href = "/blogpost/{{blog.slug | safe}}" class= "text-dark">{{blog.title}} </a></h2>
+  <div class = "my-10">
+    {{blog.content | safe | slice:245}}.....
+  </div>
+  <br>
+  <a href="/blogpost/{{blog.slug}}" class = "text-dark"><button class="btn btn-outline-primary btn-sm"> Read More...</button></a>
+</div>
+{% endfor %}<br>
+<div class = "my-0 width=400px">
+{% if prev %}
+<button class="btn btn-success"><a class="text-light" href="/posts/?page={{prev}}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">&laquo; Previous</a></button>
+{% else %}
+<button class="btn btn-success"><a class="text-light" href="#" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">&laquo; Previous</a></button>
+{% endif %}
+{% if nxt %}
+<button class="btn btn-success float-end"><a class="text-light" href="/posts/?page={{nxt}}" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Next &raquo;</a></button>
+{% else %}
+<button class="btn btn-success float-end"><a class="text-light" href="#" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Next &raquo;</a>
+</button></button>
+{% endif %}
+<br/><br/>
+</div>
+{% endblock body %}
